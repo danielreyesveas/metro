@@ -1,0 +1,251 @@
+@use "variables";
+
+@font-face {
+	font-family: "PressStart2P";
+	src: url("./fonts/press-start2p-regular.ttf") format("truetype");
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "PressStart2P";
+	font-size: 14px;
+	color: var(--text);
+	background-color: var(--bg);
+	user-select: none;
+}
+
+.container {
+	color: var(--text);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.metronome {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	padding: 20px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.beats-container {
+	display: grid;
+	height: 200px;
+	text-align: center;
+	width: 200px;
+
+	p {
+		align-self: center;
+		font-size: 0.8rem;
+		grid-column: 1;
+		grid-row: 1;
+		justify-self: center;
+	}
+
+	ul {
+		display: grid;
+		font-size: 0;
+		grid-column: 1;
+		grid-row: 1;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		padding: 0;
+
+		li {
+			display: grid;
+			grid-column: 1;
+			grid-row: 1;
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+			justify-items: center;
+			transform: rotateZ(360deg);
+			transition: transform 0.15s ease-in-out;
+
+			&.beat-active {
+				span,
+				span:before,
+				span:after {
+					background: var(--dark);
+				}
+			}
+
+			span {
+				position: relative;
+				display: inline-block;
+				grid-column: 1;
+				grid-row: 1;
+				width: 40px;
+				height: 23.09px;
+				margin: 11.55px 0;
+				border-left: solid 2px var(--text);
+				border-right: solid 2px var(--text);
+
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					z-index: 1;
+					width: 28.28px;
+					height: 28.28px;
+					-webkit-transform: scaleY(0.5774) rotate(-45deg);
+					-ms-transform: scaleY(0.5774) rotate(-45deg);
+					transform: scaleY(0.5774) rotate(-45deg);
+					left: 3.8579px;
+				}
+
+				&:before {
+					top: -14.1421px;
+					border-top: solid 2.8284px var(--text);
+					border-right: solid 2.8284px var(--text);
+				}
+
+				&:after {
+					bottom: -14.1421px;
+					border-bottom: solid 2.8284px var(--text);
+					border-left: solid 2.8284px var(--text);
+				}
+			}
+		}
+	}
+}
+
+.controls {
+	margin-top: 50px;
+	text-align: center;
+	width: 280px;
+	display: block;
+
+	p {
+		padding: 5px 5px 5px 5px;
+		position: relative;
+	}
+
+	input {
+		background: none;
+		height: 40px;
+		margin: 10px 0;
+		outline: solid 1px rbga(255, 255, 255, 0);
+		padding: 5px;
+		transition: outline 0.1s;
+		width: 100%;
+		-webkit-appearance: none;
+
+		&:focus {
+			outline: none;
+			padding: 5px;
+		}
+
+		&::-webkit-slider-runnable-track {
+			border: solid 1px var(--light);
+			border-radius: 4px;
+			cursor: pointer;
+			height: 8px;
+			width: 100%;
+		}
+
+		&::-webkit-slider-thumb {
+			background: linear-gradient(125deg, #f4f1de -20%, #fffbd5 150%);
+			border: solid 1px var(--light);
+			border-radius: 50%;
+			box-shadow: 0 0 4px var(--light);
+			cursor: pointer;
+			height: 20px;
+			margin-top: -8px;
+			width: 20px;
+			-webkit-appearance: none;
+		}
+
+		&::-moz-range-track {
+			border: solid 1px var(--light);
+			border-radius: 4px;
+			cursor: pointer;
+			height: 5px;
+			width: 100%;
+		}
+
+		&::-moz-range-thumb {
+			background: linear-gradient(125deg, #f4f1de -20%, #fffbd5 150%);
+			border: solid 1px var(--light);
+			border-radius: 50%;
+			box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+			cursor: pointer;
+			height: 20px;
+			width: 20px;
+		}
+	}
+
+	&__slider {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__slider .stepper {
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		margin: 0 5px;
+		cursor: pointer;
+		line-height: 20px;
+	}
+
+	&__slider .stepper:hover {
+		color: var(--light);
+	}
+
+	&__play {
+		align-items: center;
+		background: linear-gradient(125deg, var(--bg) -40%, #fffbd5 190%);
+		border: 2px solid var(--light);
+		border-radius: 50%;
+		/* box-shadow: 0 0 4px var(--light); */
+		color: var(--light);
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		font-size: 0.8rem;
+		height: 80px;
+		justify-content: flex-end;
+		margin: 35px auto 0;
+		padding-bottom: 11px;
+		transition: transform 0.1s ease-in-out;
+		width: 80px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+
+		&:active {
+			transform: scale(0.95);
+		}
+		&:focus {
+			outline: none;
+		}
+
+		> svg {
+			margin-bottom: 13px;
+			width: 40%;
+			fill: var(--dark);
+		}
+
+		&:disabled {
+			display: none;
+		}
+	}
+
+	&__play-icon {
+		display: none;
+	}
+}

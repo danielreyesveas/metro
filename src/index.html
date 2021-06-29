@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MTRO</title>
+		<link rel="icon" type="image/svg+xml" href="./metro.svg" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="metronome">
+				<div class="beats-container">
+					<p id="tempo">100 BPM</p>
+					<ul id="beats-list"></ul>
+				</div>
+
+				<div class="controls">
+					<span id="beats">4</span>
+					<span>/</span>
+					<span>4</span>
+
+					<div class="controls__slider">
+						<div class="decrease stepper" id="decrease-beats">
+							-
+						</div>
+
+						<input
+							id="beats-slider"
+							type="range"
+							min="2"
+							max="12"
+							value="4"
+						/>
+
+						<div class="increase stepper" id="increase-beats">
+							+
+						</div>
+					</div>
+
+					<div class="controls__slider">
+						<div class="decrease stepper" id="decrease-bpm">-</div>
+
+						<input
+							type="range"
+							id="bpm-slider"
+							min="30"
+							max="360"
+							value="100"
+						/>
+
+						<div class="increase stepper" id="increase-bpm">+</div>
+					</div>
+
+					<button class="controls__play" id="start-stop">
+						<svg
+							id="pause-icon"
+							class="controls__pause-icon"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 2.6666667 2.6666667"
+						>
+							<path
+								d="M.33375409 7e-7C.21088678-.00022696.11115886.09930686.1111468.22217476v2.2217406c-.00017872.16958502.1820295.27685132.3302225.1944023l1.99956023-1.1108703c.15278728-.084571.15278728-.3042336 0-.3888046L.4413693.02777246C.40842935.00954839.37139923-.00000781.33375409 7e-7z"
+							/>
+						</svg>
+						<svg
+							id="play-icon"
+							class="controls__play-icon"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 1.4111111 1.4111111"
+						>
+							<path
+								d="M.17346493 7.8e-7a.04410126.04410159 0 00-.0439246.04392492v1.32291534a.04410126.04410159 0 00.0439246.04426942h.39678558a.04410126.04410159 0 00.0442691-.04426942V.0439257A.04410126.04410159 0 00.57025051 7.8e-7zm.66696494 0a.04410126.04410159 0 00-.0442691.04392492v1.32291534a.04410126.04410159 0 00.0442691.04426942h.3967857a.04410126.04410159 0 00.04435526-.04426942V.0439257A.04410126.04410159 0 001.23721557 7.8e-7z"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
